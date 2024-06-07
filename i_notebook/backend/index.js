@@ -4,7 +4,6 @@ const connectToMongo = require("./db");
 const express = require("express");
 
 connectToMongo();
-console.log("process.env.PORT", process.env.PORT);
 const app = express();
 const port = 5000;
 
@@ -21,5 +20,5 @@ app.use("/api/auth", require("./routes/auth.js"));
 app.use("/api/notes", require("./routes/notes"));
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
+  console.log(`iNotebook listening on port http://localhost:${port}`);
 });
