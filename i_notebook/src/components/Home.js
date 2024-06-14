@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Notes from "./Notes";
-const Home = () => {
+const Home = (props) => {
+  const {ShowAlert} = props;
   return (
     <div>
-      <Notes />
+      <Notes showAlert={ShowAlert}/>
     </div>
   )
 }
