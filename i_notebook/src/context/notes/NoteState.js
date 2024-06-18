@@ -14,7 +14,7 @@ const NoteState = (props) => {
       method: "GET", 
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2MWFlYmU5MjA1NWRmODRiZGJmY2IyIn0sImlhdCI6MTcxNzY3Nzc2OH0.SshDQAv5DFDEZ-dUhMgFxckvEmnCPz_wsuwF8L83s1A",
+        "auth-token": localStorage.getItem('token'),
       },   
     });
     const json = await response.json()
@@ -28,7 +28,7 @@ const NoteState = (props) => {
       method: "POST", 
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2MWFlYmU5MjA1NWRmODRiZGJmY2IyIn0sImlhdCI6MTcxNzY3Nzc2OH0.SshDQAv5DFDEZ-dUhMgFxckvEmnCPz_wsuwF8L83s1A",
+        "auth-token": localStorage.getItem('token'),
       },   
       body: JSON.stringify({title, description, tag}), // body data type must match "Content-Type" header
     });
@@ -42,7 +42,7 @@ const NoteState = (props) => {
       method: "DELETE", 
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2MWFlYmU5MjA1NWRmODRiZGJmY2IyIn0sImlhdCI6MTcxNzY3Nzc2OH0.SshDQAv5DFDEZ-dUhMgFxckvEmnCPz_wsuwF8L83s1A",
+        "auth-token": localStorage.getItem('token'),
       },   
     });
     const json = response.json();
@@ -60,15 +60,15 @@ const NoteState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY2MWFlYmU5MjA1NWRmODRiZGJmY2IyIn0sImlhdCI6MTcxNzY3Nzc2OH0.SshDQAv5DFDEZ-dUhMgFxckvEmnCPz_wsuwF8L83s1A",
+        "auth-token": localStorage.getItem('token'),
       },
       body: JSON.stringify({title, description, tag}), // body data type must match "Content-Type" header
     });
     const json = await response.json();
     console.log(json);
-
+    
     let newNotes = JSON.parse(JSON.stringify(notes))
+    console.log(newNotes);
      // Logic to edit client
   for (let index = 0; index < newNotes.length; index++) {
     const element = newNotes[index];
@@ -76,7 +76,7 @@ const NoteState = (props) => {
       newNotes[index].title = title;
       newNotes[index].description = description;
       newNotes[index].tag = tag;
-      break;
+      // break;
     }
     setNotes(newNotes);
   }
